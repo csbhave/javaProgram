@@ -1,0 +1,9 @@
+
+public class Main {
+
+	public static void main(String[] args)throws IOException {
+		DbConnect connect = new DbConnect();
+		connect.ShowData();	
+	}
+
+}
