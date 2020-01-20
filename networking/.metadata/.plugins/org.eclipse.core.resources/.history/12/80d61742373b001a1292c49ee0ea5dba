@@ -1,0 +1,16 @@
+import java.net.*;
+import java.io.*;
+public class Client
+{
+	public static void main(String ar[])throws IOException
+	{
+		try{
+			System.out.println("Client Started...");
+			Socket soc = new Socket("localhost",2000);
+			BufferedReader = new bufferedReader(new InputStreamReader(System.in));
+		}catch(Exception ex){
+			System.out.println("Error "+ex);
+		}
+		}
+	}
+		

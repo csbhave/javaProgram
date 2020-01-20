@@ -1,0 +1,16 @@
+import java.net.*;
+import java.io.*;
+
+public class Client
+{
+	public static void main(String ar[])throws IOException
+	{
+		try{
+			System.out.println("Client Started...");
+			
+		}catch(Exception ex){
+			System.out.println("Error "+ex);
+		}
+		}
+	}
+}		

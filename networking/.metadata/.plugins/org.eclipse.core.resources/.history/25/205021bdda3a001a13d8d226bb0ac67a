@@ -1,0 +1,38 @@
+import java.io.*;
+import java.net.*;
+
+class AddServer
+{
+	public static void main(String arr[])throws IOException
+	{
+		String str1,str2;
+		ServerSocket ss;
+		Socket cl;
+		InputStream is;
+		OutputStream os;
+		DataInputStream dis;
+		DataOutputStream dos;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		try
+		{
+		System.out.println("in try");
+		ss=new ServerSocket(2000);
+		cl=ss.accept();
+		System.out.println("Client Connected");
+		is=cl.getInputStream();
+		os=cl.getOutputStream();
+		dis=new DataInputStream(is);
+		dos=new DataOutputStream(os);
+			while(true)
+			{
+			str1=dis.readUTF();
+			str2=dis.readUTF();
+			int a=Integer.parseInt(str1);
+			int b=Integer.parseInt(str2);
+			
+			int c=a+b;
+			dos.writeUTF(String.valueOf(c));
+			}
+		}catch(Exception e){}
+	}
+}

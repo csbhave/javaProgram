@@ -1,0 +1,36 @@
+import java.net.*;
+import java.io.*;
+
+class AddClient
+{
+	public static void main(String arr[])throws IOException
+	{
+		Socket cl;
+		InputStream is;
+		OutputStream os;
+		DataInputStream dis;
+		DataOutputStream dos;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		try
+		{
+		System.out.println("In try");
+		cl=new Socket(InetAddress.getLocalHost(),2000);
+		System.out.println("Client Connected");
+		is=cl.getInputStream();
+		os=cl.getOutputStream();
+		dis=new DataInputStream(is);
+		dos=new DataOutputStream(os);
+			while(true)
+			{
+			System.out.println("Enter First No: ");
+			String s1=br.readLine();
+			System.out.println("Enter Second No: ");
+			String s2=br.readLine();
+	
+			dos.writeUTF(s1);
+			dos.writeUTF(s2);
+			System.out.println("Addition is: "+dis.readUTF());
+			}
+		}catch(Exception e){}
+	}
+}	

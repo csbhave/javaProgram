@@ -1,0 +1,31 @@
+import java.net.*;
+import java.io.*;
+
+public class ChatClient
+{
+	public static void main(String ar[])throws IOException
+	{
+		Socket cl;
+		InputStream is;
+		OutputStream os;
+		DataInputStream dis;
+		DataOutputStream dos;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		try
+		{
+			cl=new Socket(InetAddress.getLocalHost(),2000);
+			System.out.println("Client Connected...");
+			is=cl.getInputStream();
+			os=cl.getOutputStream();
+			dis=new DataInputStream(is);
+			dos=new DataOutputStream(os);
+			while(true)
+			{
+				System.out.println("Server Says: "+dis.readUTF());
+				System.out.println("Enter Reply");
+				String str1=br.readLine();
+				dos.writeUTF(str1);
+			}
+		}catch(Exception e){}
+	}
+}		

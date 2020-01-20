@@ -1,0 +1,33 @@
+import java.net.*;
+import java.io.*;
+
+public class Server
+{
+	public static void main(String ar[])throws IOException
+	{
+		ServerSocket ss;
+		Socket cl;
+		InputStream is;
+		OutputStream os;
+		DataInputStream dis;
+		DataOutputStream dos;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		try
+		{
+			ss=new ServerSocket(2000);
+			cl=ss.accept();
+			System.out.println("Client Connected...");
+			is=cl.getInputStream();
+			os=cl.getOutputStream();
+			dis=new DataInputStream(is);
+			dos=new DataOutputStream(os);
+			while(true)
+			{
+			System.out.println("Enter Message...");
+			String str1=br.readLine();
+			dos.writeUTF(str1);
+			System.out.println("Client Says: "+dis.readUTF());
+			}
+		}catch(Exception e){}
+	}
+} 		
