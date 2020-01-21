@@ -22,14 +22,16 @@ public class DbConnect {
 			String qry="select * from student";
 			rs= st.executeQuery(qry);
 			System.out.println("Fetch records from database");
+			System.out.println("\tID \tName \tPhoneNo \tEmailID\n");
 			while(rs.next()){
 				String id= rs.getString("id");
 				String name= rs.getString("name");
 				String phno= rs.getString("phno");
 				String email= rs.getString("email");
 				
-				System.out.println("\tID:"+id+"\tName:"+name+"\tPhoneNo:"+phno+"\tEmailID:"+email);
-						
+				System.out.println("\t"+id+"\t"+name+"\t"+phno+"\t"+email);
+				System.out.println("\t===================================================");
+				
 			}
 		
 		}catch(Exception ex){
