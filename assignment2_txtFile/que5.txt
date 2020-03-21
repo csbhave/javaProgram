@@ -1,0 +1,60 @@
+
+/*
+Write JSP code to display list of blood donors with details for particular blood group. Assume suitable table structure.
+*/
+
+<%@ page language="java" contentType="text/html; charset=utf-8" import="java.sql.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Student Placement Search</h1>
+</body>
+	<form method="post">
+		<label>Enter blood group: </label>
+		<input type="text" name="bg" placeholder="Enter Here">
+		<input type="submit" value="Submit">
+	</form>
+
+<h1>View Student Details</h1>
+<%
+	String bg = request.getParameter("bg");
+
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection c = DriverManager.getConnection("Jdbc:mysql://localhost:3306/customers","root","");
+		Statement st= c.createStatement();
+		ResultSet rs= st.executeQuery("select * from student where blood_group='"+bg+"'");
+		
+		while(rs.next()){%>
+			<table border="2">
+			<tr>
+				<td>Blood Doner details</td>
+			</tr>
+			<tr>
+				<td><%= rs.getInt("id") %></td>
+				<td><%= rs.getString("name") %></td>
+				<td><%= rs.getString("address") %></td>
+				<td><%= rs.getString("phoneno") %></td>
+				<td><%= rs.getString("blood_group") %></td>
+				<td><%= rs.getString("email") %></td>
+			</tr>
+		<%
+	}
+	%>
+</table>
+<%
+c.close();
+    }
+
+catch(Exception e)
+    {
+e.printStackTrace();
+    }
+
+%>
+
+</form>
+</html>

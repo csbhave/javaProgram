@@ -1,0 +1,65 @@
+/*
+Write JSP code for ADHAR card registration (Assume suitable table structure).
+*/
+//index.html
+<!DOCTYPE html>
+<html>
+<body>
+<form method="post" action="process.jsp">
+First name:<br>
+<input type="text" name="first_name">
+<br>
+Last name:<br>
+<input type="text" name="last_name">
+<br>
+City name:<br>
+<input type="text" name="city_name">
+<br>
+State name:<br>
+<input type="text" name="state_name">
+<br>
+Enter Address:<br>
+<input type="text" name="address">
+<br>
+Phone Number:<br>
+<input type="text" name="phno">
+<br>
+Email Id:<br>
+<input type="email" name="email">
+<br><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+
+//process.jsp
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*,java.util.*"%>
+
+<%
+String first_name=request.getParameter("first_name");
+String last_name=request.getParameter("last_name");
+String city_name=request.getParameter("city_name");
+String state_name=request.getParameter("state_name");
+String address=request.getParameter("address");
+String phno=request.getParameter("phno");
+String email=request.getParameter("email");
+
+try
+{
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/aadharinfo", "root", "");
+Statement st=conn.createStatement();
+
+int i=st.executeUpdate("insert into person(first_name,last_name,city_name,state_name,address,phno,email)values('"+first_name+"','"+last_name+"','"+city_name+"','"+state_name+"','"+address+"','"+phno+"','"+email+"')");
+out.println("Data is successfully inserted!");
+
+}
+catch(Exception e)
+{
+System.out.print(e);
+e.printStackTrace();
+}
+%>
